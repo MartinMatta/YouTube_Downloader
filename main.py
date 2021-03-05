@@ -23,9 +23,9 @@ class YoutubeDownloader(QMainWindow, Ui_MainWindow) :
             )
         )
 
-        self.initUI()
-
         self.save_path = "./"
+        self.initUI()
+        
 
     @pyqtSlot()
     def on_click_download(self):
@@ -40,17 +40,22 @@ class YoutubeDownloader(QMainWindow, Ui_MainWindow) :
 
     @pyqtSlot()
     def on_click_browse(self):
-        url = self.lineEdit.text()
-        print(url)
+        self.save_path = QFileDialog.getExistingDirectory(
+            self, 'Select the Directory'
+        )
+        self.lineEdit_2.setText(self.save_path)
+       
 
     def initUI(self):
         self.pushButton.clicked.connect(self.on_click_browse)
         self.pushButton_2.clicked.connect(self.on_click_download)
 
+        self.lineEdit_2.setText(self.save_path)
+
     def download(self, url):
         youtube = pytube.YouTube(url)
         video = youtube.streams.get_highest_resolution()
-        video.download('../Video')
+        video.download(self.save_path)
 
 
 if __name__ == '__main__' :
