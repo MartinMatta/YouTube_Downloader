@@ -12,6 +12,7 @@ import re
 
 
 class YoutubeDownloader(QMainWindow, Ui_MainWindow) :
+
     def __init__(self) :
         super().__init__()
 
@@ -25,7 +26,7 @@ class YoutubeDownloader(QMainWindow, Ui_MainWindow) :
 
         self.save_path = "./"
         self.initUI()
-        
+
 
     @pyqtSlot()
     def on_click_download(self):
@@ -44,7 +45,6 @@ class YoutubeDownloader(QMainWindow, Ui_MainWindow) :
             self, 'Select the Directory'
         )
         self.lineEdit_2.setText(self.save_path)
-       
 
     def initUI(self):
         self.pushButton.clicked.connect(self.on_click_browse)
