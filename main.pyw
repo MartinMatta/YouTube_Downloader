@@ -36,7 +36,7 @@ class YoutubeDownloader(QMainWindow, Ui_MainWindow) :
         if format_ == "mp3":
             print(url)
         elif format_ == "mp4":
-            self.download(url)
+            self.download_mp4(url)
 
 
     @pyqtSlot()
@@ -52,7 +52,7 @@ class YoutubeDownloader(QMainWindow, Ui_MainWindow) :
 
         self.lineEdit_2.setText(self.save_path)
 
-    def download(self, url):
+    def download_mp4(self, url):
         youtube = pytube.YouTube(url)
         video = youtube.streams.get_highest_resolution()
         video.download(self.save_path)
